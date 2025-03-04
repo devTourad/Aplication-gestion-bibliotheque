@@ -1,0 +1,31 @@
+{% load  static %}
+
+
+<nav class="navbar navbar-expand-lg" style="background-color:rgb(9, 132, 255);" >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <i class="fa-solid fa-store"></i>BOOK STORES
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_staff%}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile_info' %}""><i class="fa-solid fa-address-card"></i>{{request.user}}</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'books' %}"><i class="fa-solid fa-book"></i>books</a>
+          </li>{% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav> 

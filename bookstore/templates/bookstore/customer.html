@@ -1,0 +1,81 @@
+{% extends "bookstore/main.html" %}
+
+
+{% block content %}
+<h1 class="p-5">customer</h1>
+
+<div class="container  pb-5">
+  <div class="row">
+    <div class="col">
+     Full name : {{ customers.name }}
+    </div>
+    <div class="col">
+      Email : {{customers.email}}
+    </div>
+    <div class="col">
+      Phone : {{customers.phone}}
+    </div>
+    <div class="col">
+      Age : {{customers.age}}
+    </div>
+    <div class="col">
+      Number of orders : {{number_orders}}
+    </div>
+    
+  </div>
+</div>
+<div class="container">
+  <table class="table">
+    <thead class="table-dark">
+        <tr>
+          <th scope="col">Book</th>
+          <th scope="col">Category</th>
+          <th scope="col">status</th>
+          <th scope="col">date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in orders    %}
+        <tr>
+        <td>{{item.book}}</td>
+        <td>{{item.book.category}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.date_created}}</td>
+        <td>
+          <a href="{% url 'update' item.id %}"> <i class="fa-solid fa-pen-to-square"></i></a>
+          <a class="text-danger"  href="{% url 'delete' item.id %}"> <i class="fa-regular fa-trash-can"></i></a>
+      </td>
+      </tr>
+      {%  endfor %}
+      
+    
+      </tbody>
+    </table>
+</div>
+        
+
+<div class="container  pb-5">
+  <div class="row">
+    <div class="col">
+      <h6 class="card-subtitle mb-2 text-body-secondary"><a class="btn btn-info"  href="{% url 'create' customers.id %}"> Create Order</a></h6> 
+
+    </div>
+    
+  </div>
+</div>
+
+<div class="container  pb-5">
+  <div class="row">
+    <div class="col" >
+      <form class="d-flex" role="search" method="GET">
+        {{myfilter.form}}<br><br><div class="col" >
+        <button class="btn btn-outline-success" type="submit">Search</button></div>
+      </form>
+    </div>
+    
+  </div>
+</div>
+<hr>
+{% endblock %}
+

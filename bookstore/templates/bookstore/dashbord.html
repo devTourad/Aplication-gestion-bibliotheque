@@ -1,0 +1,110 @@
+{% extends "bookstore/main.html" %}
+{% block content %}
+<div class="container p-5">
+<ol class="list-group list-group-numbered">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Total order</div>
+      
+    </div>
+    <span class="badge text-bg-primary rounded-pill">{{t_orders}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Pending</div>
+    </div>
+    <span class="badge rounded-pill text-bg-danger">{{p_orders}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Delivered</div>
+    </div>
+    <span class="badge rounded-pill text-bg-success"> {{d_orders}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">In progress</div>
+    </div>
+    <span class="badge rounded-pill text-bg-warning">{{in_orders}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">out of order</div>
+    </div>
+    <span class="badge rounded-pill text-bg-secondary"> {{out_orders}} </span>
+  </li>
+</ol> 
+</div>
+
+<div class="container ">
+    <div class="row">
+      <div class="col">
+        <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">Customers</h5>
+              {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary"><a  class="btn btn-info" href="{% url 'create' %}">Create</a></h6> {% endcomment %}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Show</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in customers    %}
+                    <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.phone}}</td>
+                    <td> <a href="{% url 'customer' item.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                  </tr>
+                  {%  endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">Orders</h5>
+              {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary"><a  class="btn btn-info"  href="#"> Create</a></h6> {% endcomment %}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in orders    %}
+                    <tr>
+                    <td>{{item.date_created}}</td>
+                    <td>{{item.customer}}</td>
+                    <td>{{item.book}}</td>
+                    <td>{{item.status}}</td>
+                    <td>
+                        <a href="{% url 'update' item.id %}"> <i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="text-danger"  href="{% url 'delete' item.id %}"> <i class="fa-regular fa-trash-can"></i></a>
+                    </td>
+                    
+                  </tr>
+                  {%  endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+        
+{% endblock %}

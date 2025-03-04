@@ -1,0 +1,29 @@
+{% load static %}
+  <link rel="stylesheet"type="text/css" href="{% static '/CSSv/style.css' %}">
+
+<div class="container">
+  <div class="form-container">
+      <!-- Login Form -->
+      <div id="login-form" class="form active">
+          <h2>Login</h2>
+          <form method="POST" action="" id="login">
+            {% csrf_token %}
+              <div class="input-group">
+                  <label for="login-email">Email</label>
+                  <input type="text"  name="username" >
+              </div>
+              <div class="input-group">
+                  <label for="login-password">Password</label>
+                  <input type="password"  name="password" >
+              </div>
+              <button type="submit">Login</button>
+              <p>Don't have an account? <a href="{% url 'register'%}" >Register</a></p>
+              <p> <a href="{% url 'reset_password'%}" >Forgot password?</a></p>
+          </form><BR><BR>
+          {% for msg in messages%}
+<h4>{{msg}}</h4>
+{% endfor %}
+      </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+ {% comment %} <h1>Register</h1>
+<form method="POST" action="">
+   {% csrf_token %}
+
+{{form.username.label}}
+ {{form.username}} <br>
+
+     {{form.email.label}}
+    {{form.email}} <br>
+
+     {{form.password1.label}}
+    {{form.password1}} <br>
+
+     {{form.password2.label}}
+    {{form.password2}} <br>
+ <script src="https://www.google.com/recaptcha/api.js"></script>
+    <div class="g-recaptcha" data-sitekey="6Ldq_9AZAAAAANXoYHNla9SJosforXZyX8wr3wj5"></div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <br>
+ {{form.errors}} 
+  <br>
+  <a href="{% url 'login'%}">Login page</a>
+</form> {% endcomment %}
+{% load static %}
+  <link rel="stylesheet"type="text/css" href="{% static '/CSSv/style.css' %}">
+
+<div class="container">
+  <div class="form-container">
+    <div  class="form">
+      <h2>Register</h2>
+      <form method="POST" action="" >
+          {% csrf_token %}
+          <div class="input-group">
+             <label >Username</label>
+             <input type="text"  name="username" >
+           </div>
+          <div class="input-group">
+              <label >Email</label>
+              <input type="email"  name="email" >
+          </div>
+          <div class="input-group">
+              <label >Password</label>
+              <input type="password"  name="password1" >
+          </div>
+          <div class="input-group">
+              <label >Confirm Password</label>
+              <input type="password2"  name="password2" >
+          </div>
+            {% comment %} <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6Ldq_9AZAAAAANXoYHNla9SJosforXZyX8wr3wj5"></div> {% endcomment %}
+          <button type="submit">Register</button>
+          <p>Already have an account? <a href="{% url 'login'%}">Login</a></p>
+          
+  <br>
+  {{form.errors}} 
+   <br>
+      </form>
+  </div>
+</div>
+</div> 
+
